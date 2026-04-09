@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roles & Privileges Reference — Office Management System</title>
+<title>Complete Roles &amp; Privileges Reference — Office Management System</title>
 <style>
   :root {
     --color-background-primary: #ffffff;
@@ -15,7 +15,6 @@
     --color-background-danger: #fcebeb;
     --color-text-primary: #1a1a18;
     --color-text-secondary: #5f5e5a;
-    --color-text-tertiary: #888780;
     --color-text-info: #185fa5;
     --color-text-success: #3b6d11;
     --color-text-warning: #854f0b;
@@ -33,14 +32,13 @@
     :root {
       --color-background-primary: #1e1e1c;
       --color-background-secondary: #2a2a28;
-      --color-background-tertiary: #323230;
+      --color-background-tertiary: #1a1a18;
       --color-background-info: #042c53;
       --color-background-success: #173404;
       --color-background-warning: #412402;
       --color-background-danger: #501313;
       --color-text-primary: #e8e6de;
       --color-text-secondary: #a8a69e;
-      --color-text-tertiary: #6e6c66;
       --color-text-info: #85b7eb;
       --color-text-success: #97c459;
       --color-text-warning: #ef9f27;
@@ -51,303 +49,544 @@
       --color-border-info: #85b7eb;
     }
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    color: var(--color-text-primary);
-    background: var(--color-background-tertiary);
-    padding: 24px 16px;
-    line-height: 1.5;
-  }
-  .page-header {
-    max-width: 900px;
-    margin: 0 auto 24px;
-  }
-  .page-header h1 {
-    font-size: 22px;
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-  .page-header p {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-  }
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: var(--color-background-secondary);
-    border-radius: var(--border-radius-lg);
-    border: 0.5px solid var(--color-border-tertiary);
-    padding: 20px;
-  }
-  .section-title { font-size: 17px; font-weight: 500; margin: 1.5rem 0 .5rem; }
-  .sub { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 .75rem; }
-  .note { font-size: 12px; color: var(--color-text-secondary); background: var(--color-background-secondary); border-left: 2px solid var(--color-border-info); padding: 8px 12px; border-radius: 0 6px 6px 0; margin: 8px 0 14px; }
-  .nav-tabs { display: flex; gap: 4px; margin-bottom: 1rem; flex-wrap: wrap; }
-  .tab-btn { padding: 6px 14px; border-radius: 100px; font-size: 13px; border: 0.5px solid var(--color-border-tertiary); background: transparent; color: var(--color-text-secondary); cursor: pointer; transition: all .15s; }
-  .tab-btn.active { background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary); }
-  .tab-content { display: none; }
-  .tab-content.show { display: block; }
-  .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th { text-align: left; padding: 8px 10px; font-weight: 500; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); white-space: nowrap; }
-  td { padding: 7px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); vertical-align: middle; }
-  tr:last-child td { border-bottom: none; }
-  .row-label { font-weight: 500; font-size: 12px; }
-  .tc { text-align: center; }
-  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 100px; margin: 2px 2px 2px 0; font-weight: 500; }
-  .b-full { background: var(--color-background-success); color: var(--color-text-success); }
-  .b-yes { background: var(--color-background-info); color: var(--color-text-info); }
-  .b-no { background: var(--color-background-secondary); color: var(--color-text-secondary); }
-  .b-cond { background: var(--color-background-warning); color: var(--color-text-warning); }
-  .b-legacy { background: var(--color-background-danger); color: var(--color-text-danger); }
-  .detail-panel { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 16px; margin-bottom: 1.5rem; display: none; }
-  .detail-panel.show { display: block; }
-  .detail-title { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
-  .perm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 6px; }
-  .perm-item { display: flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 0; }
-  .perm-icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
-  .check { color: var(--color-text-success); }
-  .cross { color: var(--color-text-secondary); }
-  .role-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
-  .role-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; cursor: pointer; transition: border-color .15s; }
-  .role-card:hover { border-color: var(--color-border-primary); }
-  .role-card.active { border-color: var(--color-border-info); border-width: 1.5px; }
-  .role-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-  .role-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .role-name { font-weight: 500; font-size: 14px; }
-  .role-tier { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
-  .role-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
-  .flow-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
-  .flow-box { padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 500; border: 0.5px solid; }
-  .flow-arrow { color: var(--color-text-secondary); font-size: 16px; }
-  .tier-owner { background: rgba(186,117,23,.12); color: #854F0B; border-color: rgba(186,117,23,.3); }
-  .tier-ceo { background: rgba(186,117,23,.1); color: #854F0B; border-color: rgba(186,117,23,.25); }
-  .tier-admin { background: rgba(226,75,74,.1); color: #A32D2D; border-color: rgba(226,75,74,.3); }
-  .tier-dhead { background: rgba(127,119,221,.12); color: #534AB7; border-color: rgba(127,119,221,.3); }
-  .tier-mgr { background: rgba(55,138,221,.12); color: #185FA5; border-color: rgba(55,138,221,.3); }
-  .tier-staff { background: rgba(99,153,34,.12); color: #3B6D11; border-color: rgba(99,153,34,.3); }
-  .tier-intern { background: rgba(29,158,117,.12); color: #0F6E56; border-color: rgba(29,158,117,.3); }
-  .tier-client { background: rgba(83,74,183,.12); color: #534AB7; border-color: rgba(83,74,183,.3); }
-  .tier-legacy { background: rgba(83,83,83,.08); color: var(--color-text-secondary); border-color: var(--color-border-secondary); }
-  .kv { display: flex; gap: 8px; align-items: flex-start; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 12px; }
-  .kv:last-child { border-bottom: none; }
-  .kv-key { min-width: 140px; color: var(--color-text-secondary); font-weight: 500; flex-shrink: 0; }
-  .kv-val { color: var(--color-text-primary); line-height: 1.5; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
-  @media(max-width: 520px) { .two-col { grid-template-columns: 1fr; } }
-  code { font-family: var(--font-mono); font-size: 11px; background: var(--color-background-secondary); padding: 1px 5px; border-radius: 4px; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary);background:var(--color-background-tertiary);padding:24px 16px;line-height:1.5}
+
+  /* ── Page header ── */
+  .page-header{max-width:960px;margin:0 auto 20px}
+  .page-header h1{font-size:22px;font-weight:500;margin-bottom:4px}
+  .page-header p{font-size:13px;color:var(--color-text-secondary)}
+  .section-chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+  .chip{font-size:11px;padding:3px 10px;border-radius:100px;border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);cursor:pointer;transition:all .15s;background:var(--color-background-primary)}
+  .chip.active{background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-primary)}
+
+  /* ── Container ── */
+  .container{max-width:960px;margin:0 auto;background:var(--color-background-secondary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:20px}
+
+  /* ── Section groups ── */
+  .section-group{display:none}
+  .section-group.show{display:block}
+  .group-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);margin-bottom:12px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary)}
+
+  /* ── Tabs ── */
+  .nav-tabs{display:flex;gap:4px;margin-bottom:1rem;flex-wrap:wrap}
+  .tab-btn{padding:6px 14px;border-radius:100px;font-size:13px;border:0.5px solid var(--color-border-tertiary);background:transparent;color:var(--color-text-secondary);cursor:pointer;transition:all .15s}
+  .tab-btn.active{background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-primary)}
+  .tab-content{display:none}
+  .tab-content.show{display:block}
+
+  /* ── Typography helpers ── */
+  .section-title{font-size:16px;font-weight:500;margin:1.4rem 0 .4rem}
+  .section-title:first-child{margin-top:0}
+  .sub{font-size:13px;color:var(--color-text-secondary);margin:0 0 .75rem}
+  .note{font-size:12px;color:var(--color-text-secondary);background:var(--color-background-secondary);border-left:2px solid var(--color-border-info);padding:8px 12px;border-radius:0 6px 6px 0;margin:8px 0 14px}
+  .note.warn{border-left-color:#BA7517}
+  .note.danger{border-left-color:#A32D2D}
+  code{font-family:var(--font-mono);font-size:11px;background:var(--color-background-secondary);padding:1px 5px;border-radius:4px}
+
+  /* ── Badges ── */
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:100px;margin:2px 2px 2px 0;font-weight:500}
+  .b-yes{background:var(--color-background-success);color:var(--color-text-success)}
+  .b-no{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+  .b-cond{background:var(--color-background-warning);color:var(--color-text-warning)}
+  .b-info{background:var(--color-background-info);color:var(--color-text-info)}
+  .b-full{background:var(--color-background-success);color:var(--color-text-success)}
+
+  /* ── Role tier pills ── */
+  .flow-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0}
+  .flow-box{padding:5px 12px;border-radius:100px;font-size:12px;font-weight:500;border:0.5px solid;display:inline-block}
+  .flow-arrow{color:var(--color-text-secondary);font-size:16px}
+  .tier-owner{background:rgba(186,117,23,.12);color:#854F0B;border-color:rgba(186,117,23,.3)}
+  .tier-ceo{background:rgba(186,117,23,.1);color:#854F0B;border-color:rgba(186,117,23,.25)}
+  .tier-admin{background:rgba(226,75,74,.1);color:#A32D2D;border-color:rgba(226,75,74,.3)}
+  .tier-dhead{background:rgba(127,119,221,.12);color:#534AB7;border-color:rgba(127,119,221,.3)}
+  .tier-mgr{background:rgba(55,138,221,.12);color:#185FA5;border-color:rgba(55,138,221,.3)}
+  .tier-staff{background:rgba(99,153,34,.12);color:#3B6D11;border-color:rgba(99,153,34,.3)}
+  .tier-intern{background:rgba(29,158,117,.12);color:#0F6E56;border-color:rgba(29,158,117,.3)}
+  .tier-client{background:rgba(83,74,183,.12);color:#534AB7;border-color:rgba(83,74,183,.3)}
+  .tier-legacy{background:rgba(83,83,83,.08);color:var(--color-text-secondary);border-color:var(--color-border-secondary)}
+
+  /* ── Role cards ── */
+  .role-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem}
+  .role-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+  .role-card:hover{border-color:var(--color-border-primary)}
+  .role-card.active{border-color:var(--color-border-info);border-width:1.5px}
+  .role-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .role-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  .role-name{font-weight:500;font-size:14px}
+  .role-tier{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+  .role-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+  .detail-panel{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px;margin-bottom:1.5rem;display:none}
+  .detail-panel.show{display:block}
+  .detail-title{font-size:15px;font-weight:500;margin-bottom:12px}
+  .perm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px}
+  .perm-item{display:flex;align-items:center;gap:6px;font-size:12px;padding:4px 0}
+  .check{color:var(--color-text-success)}
+
+  /* ── Tables ── */
+  .table-wrap{overflow-x:auto;margin-bottom:1rem}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{text-align:left;padding:8px 10px;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);white-space:nowrap}
+  td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  .row-label{font-weight:500;font-size:12px}
+  .tc{text-align:center}
+  .cat-row td{font-weight:500;font-size:11px;color:var(--color-text-secondary);padding:10px 10px 4px;background:var(--color-background-secondary)}
+
+  /* ── KV rows ── */
+  .kv{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px}
+  .kv:last-child{border-bottom:none}
+  .kv-key{min-width:170px;color:var(--color-text-secondary);font-weight:500;flex-shrink:0}
+  .kv-val{color:var(--color-text-primary);line-height:1.5}
+
+  /* ── Cards ── */
+  .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+  .card-title{font-weight:500;font-size:13px;margin-bottom:8px}
+
+  /* ── Grids ── */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  @media(max-width:540px){.two-col{grid-template-columns:1fr}}
+
+  /* ── Steps ── */
+  .step{display:flex;gap:10px;align-items:flex-start;font-size:13px;margin-bottom:8px}
+  .step-num{min-width:22px;height:22px;background:var(--color-background-info);color:var(--color-text-info);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0;font-size:12px}
+
+  .green{color:var(--color-text-success)}
+  .grey{color:var(--color-text-secondary)}
 </style>
 </head>
 <body>
 
 <div class="page-header">
-  <h1>Roles &amp; Privileges Reference</h1>
-  <p>Office Management System — Phase 1 / v1 &nbsp;·&nbsp; Source: vibe-tasker-hub-opt.2.0</p>
+  <h1>Complete Roles &amp; Privileges Reference</h1>
+  <p>Office Management System — Phase 1 / v1 &nbsp;·&nbsp; Source: vibe-tasker-hub-opt.2.0 &nbsp;·&nbsp; All 12 sections in one document</p>
+  <div class="section-chips">
+    <button class="chip active" onclick="showGroup('all', this)">All sections</button>
+    <button class="chip" onclick="showGroup('roles', this)">Roles &amp; permissions</button>
+    <button class="chip" onclick="showGroup('access', this)">Access &amp; features</button>
+    <button class="chip" onclick="showGroup('ops', this)">Operations &amp; gaps</button>
+  </div>
 </div>
 
 <div class="container">
 
-  <div class="nav-tabs">
-    <button class="tab-btn active" onclick="showTab('overview')">Role overview</button>
-    <button class="tab-btn" onclick="showTab('perms')">Permission matrix</button>
-    <button class="tab-btn" onclick="showTab('nav')">Navigation access</button>
-    <button class="tab-btn" onclick="showTab('privs')">Privilege system</button>
-    <button class="tab-btn" onclick="showTab('onboarding')">Onboarding flow</button>
-    <button class="tab-btn" onclick="showTab('db')">DB enforcement</button>
-  </div>
+  <!-- ════════════════════════════════════════════════════
+       GROUP A — ROLES & PERMISSIONS
+  ════════════════════════════════════════════════════ -->
+  <div class="section-group show" id="group-roles" data-groups="all,roles">
 
-  <!-- TAB 1 -->
-  <div id="tab-overview" class="tab-content show">
-    <div class="section-title">Role hierarchy</div>
-    <div class="sub">Click any role card to expand its full permission details</div>
-    <div class="flow-row">
-      <div class="flow-box tier-owner">Owner</div><span class="flow-arrow">›</span>
-      <div class="flow-box tier-ceo">CEO</div><span class="flow-arrow">›</span>
-      <div class="flow-box tier-admin">Admin</div><span class="flow-arrow">›</span>
-      <div class="flow-box tier-dhead">Dept. Head</div><span class="flow-arrow">›</span>
-      <div class="flow-box tier-mgr">Manager</div><span class="flow-arrow">›</span>
-      <div class="flow-box tier-staff">Staff</div><span class="flow-arrow">›</span>
-      <div class="flow-box tier-intern">Intern</div>
-    </div>
-    <div class="flow-row">
-      <div class="flow-box tier-client">Client</div>
-      <span style="font-size:12px;color:var(--color-text-secondary);margin-left:4px">— external portal role (separate track)</span>
-    </div>
-    <div class="flow-row">
-      <div class="flow-box tier-legacy">finance / hr / qc</div>
-      <span style="font-size:12px;color:var(--color-text-secondary);margin-left:4px">— legacy aliases → displayed as "Staff", zero permissions in code</span>
-    </div>
-    <div class="note">Owner and CEO are treated as supersets of Admin everywhere in the system — if a check allows "admin", it automatically allows "owner" and "ceo" too. Department Head supersedes Manager for department-scoped actions.</div>
-    <div class="role-grid" id="role-grid"></div>
-    <div class="detail-panel" id="detail-panel">
-      <div class="detail-title" id="detail-title"></div>
-      <div id="detail-body"></div>
-    </div>
-  </div>
+    <div class="group-title">Roles &amp; permissions</div>
 
-  <!-- TAB 2 -->
-  <div id="tab-perms" class="tab-content">
-    <div class="section-title">Full permission matrix</div>
-    <div class="sub">All 25 PermissionActions defined in AuthContext, checked against every active role</div>
-    <div class="note">Roles <strong>finance</strong>, <strong>hr</strong>, and <strong>qc</strong> have an empty permission array in code — they are legacy enum values that display as "Staff" and rely on the Privilege System rather than role-based checks.</div>
-    <div class="table-wrap" id="matrix-table"></div>
-  </div>
+    <!-- Sub-tabs for this group -->
+    <div class="nav-tabs" id="tabs-roles">
+      <button class="tab-btn active" onclick="showTab('overview','roles')">Role overview</button>
+      <button class="tab-btn" onclick="showTab('perms','roles')">Permission matrix</button>
+      <button class="tab-btn" onclick="showTab('nav','roles')">Navigation access</button>
+      <button class="tab-btn" onclick="showTab('privs','roles')">Privilege system</button>
+    </div>
 
-  <!-- TAB 3 -->
-  <div id="tab-nav" class="tab-content">
-    <div class="section-title">Sidebar navigation access by role</div>
-    <div class="sub">What each role sees in the left navigation</div>
-    <div class="table-wrap" id="nav-table"></div>
-    <div class="note">Finance and HR pages use a separate access check — <code>checkSectionAccess()</code> — not a simple role check. A user of any role can see these pages if they have a Finance or HR privilege granted to them, or if their department name matches "finance" / "hr &amp; sops".</div>
-  </div>
-
-  <!-- TAB 4 -->
-  <div id="tab-privs" class="tab-content">
-    <div class="section-title">Privilege (cross-role access) system</div>
-    <div class="sub">Layered on top of the role system to grant individuals extra section access without changing their role</div>
-    <div class="two-col">
-      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
-        <div style="font-weight:500;margin-bottom:10px;font-size:13px">Privilege sections</div>
-        <div class="kv"><span class="kv-key">finance</span><span class="kv-val">Access to /finance page and billing data</span></div>
-        <div class="kv"><span class="kv-key">hr_sops</span><span class="kv-val">Access to /hr page, JDs, SOPs, leave management</span></div>
+    <!-- Overview -->
+    <div id="tab-overview" class="tab-content show" data-group="roles">
+      <div class="section-title">Role hierarchy</div>
+      <div class="sub">Click any role card to expand its full permission details</div>
+      <div class="flow-row">
+        <div class="flow-box tier-owner">Owner</div><span class="flow-arrow">›</span>
+        <div class="flow-box tier-ceo">CEO</div><span class="flow-arrow">›</span>
+        <div class="flow-box tier-admin">Admin</div><span class="flow-arrow">›</span>
+        <div class="flow-box tier-dhead">Dept. Head</div><span class="flow-arrow">›</span>
+        <div class="flow-box tier-mgr">Manager</div><span class="flow-arrow">›</span>
+        <div class="flow-box tier-staff">Staff</div><span class="flow-arrow">›</span>
+        <div class="flow-box tier-intern">Intern</div>
       </div>
-      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
-        <div style="font-weight:500;margin-bottom:10px;font-size:13px">Access levels</div>
-        <div class="kv"><span class="kv-key">view</span><span class="kv-val">Read-only access to the section</span></div>
-        <div class="kv"><span class="kv-key">edit</span><span class="kv-val">Full read + write access to the section</span></div>
+      <div class="flow-row">
+        <div class="flow-box tier-client">Client</div>
+        <span style="font-size:12px;color:var(--color-text-secondary);margin-left:4px">— external portal role (separate track)</span>
+      </div>
+      <div class="flow-row">
+        <div class="flow-box tier-legacy">finance / hr / qc</div>
+        <span style="font-size:12px;color:var(--color-text-secondary);margin-left:4px">— legacy aliases → display as "Staff", zero permissions in code</span>
+      </div>
+      <div class="note">Owner and CEO are treated as supersets of Admin everywhere — if a check allows "admin", it automatically allows "owner" and "ceo" too.</div>
+      <div class="role-grid" id="role-grid"></div>
+      <div class="detail-panel" id="detail-panel">
+        <div class="detail-title" id="detail-title"></div>
+        <div id="detail-body"></div>
       </div>
     </div>
-    <div class="section-title" style="font-size:15px">How access is resolved (3-tier check)</div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1rem">
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
-        <div style="min-width:24px;height:24px;background:var(--color-background-info);color:var(--color-text-info);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0">1</div>
-        <div><strong>Role check (god-mode):</strong> If the user's role is owner, ceo, or admin → always grant access</div>
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
-        <div style="min-width:24px;height:24px;background:var(--color-background-info);color:var(--color-text-info);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0">2</div>
-        <div><strong>Department membership:</strong> If the user belongs to a department named "finance" or "hr &amp; sops" → grant access + edit by default</div>
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
-        <div style="min-width:24px;height:24px;background:var(--color-background-info);color:var(--color-text-info);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0">3</div>
-        <div><strong>Explicit privilege record:</strong> If a row exists in <code>user_privileges</code> for this user + workspace + section → grant at stored level</div>
-      </div>
-    </div>
-    <div class="section-title" style="font-size:15px">Who can grant privileges</div>
-    <div class="kv" style="font-size:13px"><span class="kv-key">manage_privileges permission</span><span class="kv-val">Only owner, ceo, admin have this permission in the role matrix</span></div>
-    <div class="kv" style="font-size:13px"><span class="kv-key">UI: ManagePrivilegesDialog</span><span class="kv-val">Team page → member dropdown → "Manage Privileges"</span></div>
-    <div class="kv" style="font-size:13px"><span class="kv-key">Intern/Client restriction</span><span class="kv-val">Cannot be granted "edit" access to Finance — enforced in UI and save handler</span></div>
-    <div class="section-title" style="font-size:15px">Leave approval privilege</div>
-    <div class="note">Leave approval is not part of the <code>user_privileges</code> table. It uses an inline check: approver must be owner, admin, manager, OR have hr_sops edit access via <code>checkEditAccess("hr_sops")</code>.</div>
-  </div>
 
-  <!-- TAB 5 -->
-  <div id="tab-onboarding" class="tab-content">
-    <div class="section-title">Onboarding flow by role</div>
-    <div class="sub">How different roles are processed after joining a workspace</div>
-    <div class="two-col">
-      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
-        <div style="font-weight:500;margin-bottom:8px;font-size:13px">Skip onboarding (immediate access)</div>
-        <div class="kv"><span class="kv-key">owner</span><span class="kv-val">Workspace creator, always bypasses</span></div>
-        <div class="kv"><span class="kv-key">admin</span><span class="kv-val">Full admin, bypasses</span></div>
-        <div class="kv"><span class="kv-key">ceo</span><span class="kv-val">Treated as admin, bypasses</span></div>
-        <div class="kv"><span class="kv-key">client</span><span class="kv-val">External portal user, bypasses</span></div>
-      </div>
-      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
-        <div style="font-weight:500;margin-bottom:8px;font-size:13px">Must complete onboarding (FAIL-CLOSED)</div>
-        <div class="kv"><span class="kv-key">department_head</span><span class="kv-val">Requires onboarding + HR verification</span></div>
-        <div class="kv"><span class="kv-key">manager</span><span class="kv-val">Requires onboarding + HR verification</span></div>
-        <div class="kv"><span class="kv-key">staff</span><span class="kv-val">Requires onboarding + HR verification</span></div>
-        <div class="kv"><span class="kv-key">intern</span><span class="kv-val">Requires onboarding + HR verification</span></div>
-      </div>
+    <!-- Permission matrix -->
+    <div id="tab-perms" class="tab-content" data-group="roles">
+      <div class="section-title">Full permission matrix</div>
+      <div class="sub">All 25 PermissionActions defined in AuthContext</div>
+      <div class="note">Roles <strong>finance</strong>, <strong>hr</strong>, <strong>qc</strong> have an empty permission array — they are legacy enum values displaying as "Staff" with zero actual permissions.</div>
+      <div class="table-wrap" id="matrix-table"></div>
     </div>
-    <div class="section-title" style="font-size:15px">Onboarding states</div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1rem">
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px"><span class="badge b-cond">pending_info</span><span>Not yet submitted personal/HR info. Full-screen overlay blocks dashboard (z-index 10000).</span></div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px"><span class="badge b-cond">pending_hr</span><span>Info submitted, awaiting admin/HR verification. Still blocked. Admins notified.</span></div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px"><span class="badge b-full">verified</span><span>HR/admin approved. User gets full dashboard access per their role.</span></div>
-    </div>
-    <div class="note">Onboarding is fail-closed — it blocks content while loading to prevent any flash of unauthorized content before status is confirmed.</div>
-  </div>
 
-  <!-- TAB 6 -->
-  <div id="tab-db" class="tab-content">
-    <div class="section-title">Database-level enforcement (Supabase RLS)</div>
-    <div class="sub">How roles are enforced at the Postgres level, independent of frontend checks</div>
-    <div class="section-title" style="font-size:15px">Core DB helper functions</div>
-    <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:1rem">
+    <!-- Navigation access -->
+    <div id="tab-nav" class="tab-content" data-group="roles">
+      <div class="section-title">Sidebar navigation access by role</div>
+      <div class="sub">What each role sees in the left navigation</div>
+      <div class="table-wrap" id="nav-table"></div>
+      <div class="note">Finance and HR pages use <code>checkSectionAccess()</code> — any role can access them if they have a matching privilege or department membership.</div>
+    </div>
+
+    <!-- Privilege system -->
+    <div id="tab-privs" class="tab-content" data-group="roles">
+      <div class="section-title">Privilege (cross-role access) system</div>
+      <div class="sub">Layered on top of roles — grants section access without changing the user's role</div>
+      <div class="two-col">
+        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
+          <div style="font-weight:500;margin-bottom:10px;font-size:13px">Sections</div>
+          <div class="kv"><span class="kv-key">finance</span><span class="kv-val">Access to /finance and billing data</span></div>
+          <div class="kv"><span class="kv-key">hr_sops</span><span class="kv-val">Access to /hr, JDs, SOPs, leave management</span></div>
+        </div>
+        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
+          <div style="font-weight:500;margin-bottom:10px;font-size:13px">Access levels</div>
+          <div class="kv"><span class="kv-key">view</span><span class="kv-val">Read-only access</span></div>
+          <div class="kv"><span class="kv-key">edit</span><span class="kv-val">Full read + write access</span></div>
+        </div>
+      </div>
+      <div class="section-title" style="font-size:15px">3-tier access resolution</div>
+      <div class="step"><div class="step-num">1</div><div><strong>Role check:</strong> owner / ceo / admin → always grant, skip all further checks</div></div>
+      <div class="step"><div class="step-num">2</div><div><strong>Department membership:</strong> user in "finance" or "hr &amp; sops" dept → grant + edit</div></div>
+      <div class="step"><div class="step-num">3</div><div><strong>Explicit privilege row:</strong> record in <code>user_privileges</code> → grant at stored level</div></div>
+      <div class="section-title" style="font-size:15px;margin-top:1rem">Who can grant privileges</div>
+      <div class="kv" style="font-size:13px"><span class="kv-key">manage_privileges</span><span class="kv-val">Owner, CEO, admin only</span></div>
+      <div class="kv" style="font-size:13px"><span class="kv-key">UI location</span><span class="kv-val">Team page → member dropdown → "Manage Privileges"</span></div>
+      <div class="kv" style="font-size:13px"><span class="kv-key">Intern/client restriction</span><span class="kv-val">Cannot be granted Finance edit access</span></div>
+    </div>
+
+  </div><!-- /group-roles -->
+
+  <hr style="border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.5rem 0" id="divider-access">
+
+  <!-- ════════════════════════════════════════════════════
+       GROUP B — ACCESS & FEATURES
+  ════════════════════════════════════════════════════ -->
+  <div class="section-group show" id="group-access" data-groups="all,access">
+
+    <div class="group-title">Access &amp; features</div>
+
+    <div class="nav-tabs" id="tabs-access">
+      <button class="tab-btn active" onclick="showTab('tasks','access')">Task visibility</button>
+      <button class="tab-btn" onclick="showTab('features','access')">Feature access</button>
+      <button class="tab-btn" onclick="showTab('messaging','access')">Messaging</button>
+      <button class="tab-btn" onclick="showTab('resources','access')">Resources vault</button>
+    </div>
+
+    <!-- Task visibility -->
+    <div id="tab-tasks" class="tab-content show" data-group="access">
+      <div class="section-title">Task visibility — who sees what</div>
+      <div class="sub">Two-pass filtering in <code>useRealtimeTasks.ts</code>, on top of RLS</div>
+      <div class="card">
+        <div class="card-title">Pass 1 — Space filtering</div>
+        <div class="step"><div class="step-num">1</div><div>Fetch all workspace spaces (RLS: all members can SELECT)</div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>Owner/CEO/Admin/Dept Head/Manager</strong> → see ALL spaces</div></div>
+        <div class="step"><div class="step-num">3</div><div><strong>Staff/Intern/Client</strong> → only spaces where <code>hidden_for</code> doesn't include them AND space belongs to their department (or has no department)</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Pass 2 — Task filtering</div>
+        <div class="step"><div class="step-num">1</div><div><code>hidden_for</code> includes user → always hidden for everyone</div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>Owner/CEO/Admin/Dept Head/Manager</strong> → see ALL tasks</div></div>
+        <div class="step"><div class="step-num">3</div><div><strong>Staff/Intern/Client</strong> → task visible if: in allowed space, OR matches user's dept, OR user is in <code>task_assignees</code> (assignment always overrides space restriction)</div></div>
+      </div>
+      <div class="note warn">RLS UPDATE policy: <code>can_manage_tasks() OR is_task_assignee()</code> — staff and interns can update tasks assigned to them even if they couldn't create them.</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Role</th><th>Spaces visible</th><th>Tasks visible</th><th>Create</th><th>Delete</th><th>Badge</th></tr></thead>
+          <tbody>
+            <tr><td class="row-label">Owner / CEO / Admin</td><td>All</td><td>All</td><td class="green tc">✓</td><td class="green tc">✓</td><td class="grey tc">—</td></tr>
+            <tr><td class="row-label">Dept. Head</td><td>All</td><td>All</td><td class="green tc">✓</td><td class="green tc">✓</td><td class="grey tc">—</td></tr>
+            <tr><td class="row-label">Manager</td><td>All</td><td>All</td><td class="green tc">✓</td><td class="green tc">✓</td><td class="grey tc">—</td></tr>
+            <tr><td class="row-label">Staff</td><td>Own dept spaces</td><td>Dept + assigned</td><td class="green tc">✓</td><td class="grey tc">✗</td><td class="grey tc">—</td></tr>
+            <tr><td class="row-label">Intern</td><td>Own dept spaces</td><td>Assigned only</td><td class="grey tc">✗</td><td class="grey tc">✗</td><td class="tc">View Only</td></tr>
+            <tr><td class="row-label">Client</td><td>Assigned spaces</td><td>Assigned only</td><td class="grey tc">✗</td><td class="grey tc">✗</td><td class="grey tc">Client layout</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="two-col">
+        <div class="card" style="margin:0"><div class="card-title">team channel</div><div style="font-size:12px;color:var(--color-text-secondary)">Default for all internal members. Not visible to clients.</div></div>
+        <div class="card" style="margin:0"><div class="card-title">client channel</div><div style="font-size:12px;color:var(--color-text-secondary)">Clients always post here. Managers can toggle client mode in Tokens page.</div></div>
+      </div>
+    </div>
+
+    <!-- Feature access -->
+    <div id="tab-features" class="tab-content" data-group="access">
+      <div class="section-title">Feature access by role</div>
+      <div class="card">
+        <div class="card-title">Gantt chart (<code>/gantt</code>)</div>
+        <div class="kv"><span class="kv-key">Access</span><span class="kv-val">Owner, CEO, admin, dept head, manager, staff, intern — client blocked</span></div>
+        <div class="kv"><span class="kv-key">CRUD</span><span class="kv-val">Respects <code>add_task</code>, <code>edit_task</code>, <code>delete_task</code> permissions same as Tasks page</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Settings (<code>/settings</code>)</div>
+        <div class="kv"><span class="kv-key">Profile / Appearance / Security / Notifications</span><span class="kv-val">All roles</span></div>
+        <div class="kv"><span class="kv-key">Workspace tab</span><span class="kv-val">admin and owner only — rename, logo, domain, default role, danger zone</span></div>
+        <div class="kv"><span class="kv-key">Automations tab</span><span class="kv-val">admin and owner only — CEO excluded (known gap)</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Team page (<code>/team</code>)</div>
+        <div class="kv"><span class="kv-key">Invite members</span><span class="kv-val">Owner, CEO, admin, dept head, manager</span></div>
+        <div class="kv"><span class="kv-key">Change / remove members</span><span class="kv-val">Same — but admins cannot remove other admins (owner only can)</span></div>
+        <div class="kv"><span class="kv-key">Manage privileges</span><span class="kv-val">Owner, CEO, admin only (<code>manage_privileges</code>)</span></div>
+        <div class="kv"><span class="kv-key">Onboard a client</span><span class="kv-val">Owner, CEO, admin, dept head, manager</span></div>
+        <div class="kv"><span class="kv-key">Role assignment caps</span><span class="kv-val">CEO can't assign CEO/Admin. Dept Head can't assign CEO/Admin/Dept Head.</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Tokens (<code>/tokens</code>) — support tickets</div>
+        <div class="kv"><span class="kv-key">View all</span><span class="kv-val">Owner, CEO, admin, dept head, manager, staff</span></div>
+        <div class="kv"><span class="kv-key">View own only</span><span class="kv-val">Intern, client</span></div>
+        <div class="kv"><span class="kv-key">Create / update</span><span class="kv-val">All except intern</span></div>
+        <div class="kv"><span class="kv-key">Delete</span><span class="kv-val">Owner, CEO, admin, dept head, manager</span></div>
+        <div class="kv"><span class="kv-key">Client communication mode toggle</span><span class="kv-val">Managers only — switches comment channel to "client"</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">HR module (<code>/hr</code>)</div>
+        <div class="kv"><span class="kv-key">Page access</span><span class="kv-val">Owner/CEO/admin (auto) + hr_sops privilege or "hr &amp; sops" dept</span></div>
+        <div class="kv"><span class="kv-key">Manage JDs / SOPs</span><span class="kv-val">Owner, CEO, admin, dept head (or via privilege)</span></div>
+        <div class="kv"><span class="kv-key">Dept scope</span><span class="kv-val">Admins see all depts; dept heads/managers see only their own</span></div>
+        <div class="kv"><span class="kv-key">Leave approval</span><span class="kv-val">Owner, admin, manager + anyone with hr_sops edit access</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Finance module (<code>/finance</code>)</div>
+        <div class="kv"><span class="kv-key">Page access</span><span class="kv-val">Owner/CEO/admin (auto) + finance privilege or "finance" dept</span></div>
+        <div class="kv"><span class="kv-key">Create invoice / update billing</span><span class="kv-val">Owner, CEO, admin only (<code>view_billing</code>, <code>update_billing_status</code>)</span></div>
+        <div class="kv"><span class="kv-key">RLS note</span><span class="kv-val">Billing records SELECT is open to all workspace members — privilege check is app-layer only</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Dashboard widgets</div>
+        <div class="kv"><span class="kv-key">Task analytics, heatmap, team status, token snapshot</span><span class="kv-val">Owner → staff — hidden from intern and client</span></div>
+        <div class="kv"><span class="kv-key">Work calendar</span><span class="kv-val">All roles. Clients see first 2 events only.</span></div>
+        <div class="kv"><span class="kv-key">Mood check-in</span><span class="kv-val">All except client</span></div>
+        <div class="kv"><span class="kv-key">Share report, pending invitations</span><span class="kv-val">Admin, manager, owner</span></div>
+        <div class="kv"><span class="kv-key">Admin / Manager / Client info cards</span><span class="kv-val">Each shown only to their role</span></div>
+      </div>
+    </div>
+
+    <!-- Messaging -->
+    <div id="tab-messaging" class="tab-content" data-group="access">
+      <div class="section-title">Messaging &amp; channel access</div>
+      <div class="card">
+        <div class="card-title">Direct messages</div>
+        <div class="kv"><span class="kv-key">Who can start a DM</span><span class="kv-val">Any authenticated workspace member — all roles</span></div>
+        <div class="kv"><span class="kv-key">canChatWithClients flag</span><span class="kv-val">Owner, CEO, admin, dept head, manager = true. Defined but not enforced in v1 — any role can DM any role.</span></div>
+        <div class="kv"><span class="kv-key">canChatWithAdmins flag</span><span class="kv-val">Client role only = true. Scaffolded for v2.</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Task comment channels</div>
+        <div class="kv"><span class="kv-key">"team" channel</span><span class="kv-val">All internal roles. Clients cannot see these.</span></div>
+        <div class="kv"><span class="kv-key">"client" channel</span><span class="kv-val">Clients always post here. Managers can toggle in Tokens page.</span></div>
+        <div class="kv"><span class="kv-key">File uploads</span><span class="kv-val">Bucket: <code>client-assets</code>. No role restriction on uploads.</span></div>
+      </div>
+      <div class="note warn">Both chat flags are computed correctly but the Messages page does not gate DM creation on them in v1. Scaffolding for future enforcement.</div>
+    </div>
+
+    <!-- Resources vault -->
+    <div id="tab-resources" class="tab-content" data-group="access">
+      <div class="section-title">Resources vault (<code>/resources</code>)</div>
+      <div class="sub">Same URL — completely different UI depending on role</div>
+      <div class="two-col">
+        <div class="card" style="margin:0">
+          <div class="card-title">Manager view — <code>ResourceManagerPanel</code></div>
+          <div style="font-size:12px;line-height:1.7">Roles: owner, CEO, admin, dept head, manager<br><br>• Full CRUD for credential vaults<br>• Assign resources to specific users<br>• Field types: password, url, text<br>• Revoke access per user<br>• Masked password fields with reveal toggle</div>
+        </div>
+        <div class="card" style="margin:0">
+          <div class="card-title">Staff view — <code>StaffResourcesView</code></div>
+          <div style="font-size:12px;line-height:1.7">Roles: staff, intern<br><br>• Read-only — only resources assigned to them<br>• Password fields masked, reveal on click<br>• URL fields have "Open" link<br>• Empty state: "Manager will share when needed"</div>
+        </div>
+      </div>
+      <div class="note" style="margin-top:12px">My Resources (<code>/my-resources</code>) — staff and intern only. Shows user's personal JD (<code>assigned_user_id</code> match) and all SOPs for their departments. Read-only.</div>
+    </div>
+
+  </div><!-- /group-access -->
+
+  <hr style="border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.5rem 0" id="divider-ops">
+
+  <!-- ════════════════════════════════════════════════════
+       GROUP C — OPERATIONS & GAPS
+  ════════════════════════════════════════════════════ -->
+  <div class="section-group show" id="group-ops" data-groups="all,ops">
+
+    <div class="group-title">Operations &amp; gaps</div>
+
+    <div class="nav-tabs" id="tabs-ops">
+      <button class="tab-btn active" onclick="showTab('onboarding','ops')">Onboarding</button>
+      <button class="tab-btn" onclick="showTab('db','ops')">DB enforcement</button>
+      <button class="tab-btn" onclick="showTab('ownership','ops')">Ownership &amp; transfer</button>
+      <button class="tab-btn" onclick="showTab('quirks','ops')">Gaps &amp; inconsistencies</button>
+    </div>
+
+    <!-- Onboarding -->
+    <div id="tab-onboarding" class="tab-content show" data-group="ops">
+      <div class="section-title">Onboarding flow by role</div>
+      <div class="two-col">
+        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
+          <div style="font-weight:500;margin-bottom:8px;font-size:13px">Skip onboarding (immediate access)</div>
+          <div class="kv"><span class="kv-key">owner</span><span class="kv-val">Workspace creator, always bypasses</span></div>
+          <div class="kv"><span class="kv-key">admin</span><span class="kv-val">Full admin, bypasses</span></div>
+          <div class="kv"><span class="kv-key">ceo</span><span class="kv-val">Treated as admin, bypasses</span></div>
+          <div class="kv"><span class="kv-key">client</span><span class="kv-val">External portal user, bypasses</span></div>
+        </div>
+        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px">
+          <div style="font-weight:500;margin-bottom:8px;font-size:13px">Must complete onboarding (FAIL-CLOSED)</div>
+          <div class="kv"><span class="kv-key">department_head</span><span class="kv-val">Requires submission + HR verification</span></div>
+          <div class="kv"><span class="kv-key">manager</span><span class="kv-val">Requires submission + HR verification</span></div>
+          <div class="kv"><span class="kv-key">staff</span><span class="kv-val">Requires submission + HR verification</span></div>
+          <div class="kv"><span class="kv-key">intern</span><span class="kv-val">Requires submission + HR verification</span></div>
+        </div>
+      </div>
+      <div class="section-title" style="font-size:15px">Onboarding states</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1rem">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px"><span class="badge b-cond">pending_info</span><span>Not submitted. Full-screen overlay blocks dashboard (z-index 10000).</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px"><span class="badge b-cond">pending_hr</span><span>Submitted, awaiting verification. Still blocked. Admins notified.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px"><span class="badge b-full">verified</span><span>Approved. Full dashboard access granted per role.</span></div>
+      </div>
+      <div class="note">Guard is fail-closed — blocks content during the loading state to prevent any flash before status is confirmed. KYC document upload and department access requests are part of the onboarding wizard.</div>
+    </div>
+
+    <!-- DB enforcement -->
+    <div id="tab-db" class="tab-content" data-group="ops">
+      <div class="section-title">Database-level enforcement (Supabase RLS)</div>
+      <div class="section-title" style="font-size:15px">Core DB helper functions</div>
       <div class="kv" style="font-size:12px"><span class="kv-key">is_workspace_admin(uid)</span><span class="kv-val">role IN ('owner','ceo','admin') AND status='active'</span></div>
       <div class="kv" style="font-size:12px"><span class="kv-key">is_workspace_admin_or_manager(uid)</span><span class="kv-val">role IN ('owner','ceo','admin','department_head','manager') AND active</span></div>
       <div class="kv" style="font-size:12px"><span class="kv-key">can_manage_tasks(uid)</span><span class="kv-val">role IN ('owner','ceo','admin','department_head','manager','staff') AND active</span></div>
       <div class="kv" style="font-size:12px"><span class="kv-key">is_task_assignee(uid, task_id)</span><span class="kv-val">user is in task_assignees for the given task</span></div>
       <div class="kv" style="font-size:12px"><span class="kv-key">shares_department(uid, other_uid)</span><span class="kv-val">both users share at least one department</span></div>
+      <div style="margin-bottom:1rem"></div>
+      <div class="section-title" style="font-size:15px">Key RLS policies</div>
+      <div class="table-wrap" id="rls-table"></div>
+      <div class="section-title" style="font-size:15px">Role assignment hierarchy</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Assigning role</th><th>Can assign</th></tr></thead>
+          <tbody>
+            <tr><td class="row-label"><span class="flow-box tier-owner" style="padding:2px 8px;font-size:11px">Owner</span></td><td>CEO, Admin, Dept Head, Manager, Staff, Intern</td></tr>
+            <tr><td class="row-label"><span class="flow-box tier-admin" style="padding:2px 8px;font-size:11px">Admin</span></td><td>CEO, Admin, Dept Head, Manager, Staff, Intern</td></tr>
+            <tr><td class="row-label"><span class="flow-box tier-ceo" style="padding:2px 8px;font-size:11px">CEO</span></td><td>Dept Head, Manager, Staff, Intern (NOT CEO or Admin)</td></tr>
+            <tr><td class="row-label"><span class="flow-box tier-dhead" style="padding:2px 8px;font-size:11px">Dept Head</span></td><td>Manager, Staff, Intern (NOT CEO, Admin, or Dept Head)</td></tr>
+            <tr><td class="row-label"><span class="flow-box tier-mgr" style="padding:2px 8px;font-size:11px">Manager</span></td><td>Staff, Intern (limited via UI)</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="section-title" style="font-size:15px">Key RLS policies by table</div>
-    <div class="table-wrap" id="rls-table"></div>
-    <div class="section-title" style="font-size:15px">Role assignment hierarchy</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Assigning user role</th><th>Can assign these roles</th></tr></thead>
-        <tbody>
-          <tr><td class="row-label"><span class="flow-box tier-owner" style="padding:2px 8px;font-size:11px">Owner</span></td><td>CEO, Admin, Dept. Head, Manager, Staff, Intern</td></tr>
-          <tr><td class="row-label"><span class="flow-box tier-admin" style="padding:2px 8px;font-size:11px">Admin</span></td><td>CEO, Admin, Dept. Head, Manager, Staff, Intern</td></tr>
-          <tr><td class="row-label"><span class="flow-box tier-ceo" style="padding:2px 8px;font-size:11px">CEO</span></td><td>Dept. Head, Manager, Staff, Intern (NOT CEO or Admin)</td></tr>
-          <tr><td class="row-label"><span class="flow-box tier-dhead" style="padding:2px 8px;font-size:11px">Dept. Head</span></td><td>Manager, Staff, Intern (NOT CEO, Admin, or Dept. Head)</td></tr>
-          <tr><td class="row-label"><span class="flow-box tier-mgr" style="padding:2px 8px;font-size:11px">Manager</span></td><td>Staff, Intern (limited via UI)</td></tr>
-        </tbody>
-      </table>
+
+    <!-- Ownership -->
+    <div id="tab-ownership" class="tab-content" data-group="ops">
+      <div class="section-title">Workspace ownership and transfer</div>
+      <div class="card">
+        <div class="card-title">How the owner role is created</div>
+        <div class="kv"><span class="kv-key">Trigger</span><span class="kv-val"><code>handle_new_workspace()</code> fires on INSERT into workspaces</span></div>
+        <div class="kv"><span class="kv-key">What it does</span><span class="kv-val">Inserts into <code>workspace_members</code> with role = 'owner', status = 'active'</span></div>
+        <div class="kv"><span class="kv-key">Migration fix</span><span class="kv-val"><code>20260401000000_fix_creator_role.sql</code> — originally assigned 'admin'; corrected to 'owner'</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Ownership transfer (Settings → Workspace tab)</div>
+        <div class="step"><div class="step-num">1</div><div>Only workspace owner can initiate</div></div>
+        <div class="step"><div class="step-num">2</div><div>Owner selects target member</div></div>
+        <div class="step"><div class="step-num">3</div><div>Two DB writes: current owner → 'admin', target → 'owner'</div></div>
+        <div class="step"><div class="step-num">4</div><div>Immediate and permanent — no email confirmation, no undo in v1</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Admin protection rules</div>
+        <div class="kv"><span class="kv-key">Admins can't remove other admins</span><span class="kv-val">Only owner can remove/change admin roles</span></div>
+        <div class="kv"><span class="kv-key">Owner role is locked</span><span class="kv-val">Cannot be changed via normal role UI — only Transfer Ownership bypasses this</span></div>
+        <div class="kv"><span class="kv-key">Enforcement layer</span><span class="kv-val">Frontend only — not backed by RLS in v1</span></div>
+      </div>
+      <div class="note danger">Admin removal protection is frontend-only. A malicious admin could call the Supabase REST API directly since the RLS UPDATE policy checks <code>is_workspace_admin()</code> equally for all three top-level roles. Needs RLS enforcement in v2.</div>
     </div>
-  </div>
+
+    <!-- Quirks -->
+    <div id="tab-quirks" class="tab-content" data-group="ops">
+      <div class="section-title">Known gaps, inconsistencies, and v2 items</div>
+      <div class="card">
+        <div class="card-title" style="color:var(--color-text-warning)">CEO excluded from Settings Workspace + Automations tabs</div>
+        <div style="font-size:12px;line-height:1.6">Check is <code>userRole === "admin" || userRole === "owner"</code> — CEO not included. CEO has full permissions everywhere else but cannot access workspace rename, danger zone, or automation rules. Inconsistent with the rest of the system.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--color-text-warning)">Admin removal protection is frontend-only</div>
+        <div style="font-size:12px;line-height:1.6">The "only owner can remove admins" rule lives only in <code>WorkspaceMembersSection.tsx</code>. The RLS UPDATE policy allows any <code>is_workspace_admin()</code> user to modify any member row. Should be moved to RLS in v2.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--color-text-warning)">Finance billing RLS is app-layer only</div>
+        <div style="font-size:12px;line-height:1.6"><code>billing_records</code> SELECT is open to all workspace members. The finance privilege is a page-access gate only. Any workspace member with a valid session token can query billing data directly.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--color-text-warning)">Legacy roles (finance / hr / qc) have zero permissions</div>
+        <div style="font-size:12px;line-height:1.6"><code>rolePermissions</code> assigns <code>[]</code> to these three roles. They display as "Staff" but a user assigned one can't even add a comment or view their own tokens. Should be aliased to "staff" permissions or removed from the enum.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--color-text-warning)">Automation rules stored in browser only</div>
+        <div style="font-size:12px;line-height:1.6">Stored in local/browser storage, not the DB. Per-browser, not shared across the team, lost on storage clear. Not server-persisted in v1.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--color-text-warning)">canChatWithClients / canChatWithAdmins — defined but not enforced</div>
+        <div style="font-size:12px;line-height:1.6">Both flags computed correctly in AuthContext. Messages page does not gate DM creation on them — any role can DM any role in v1. Scaffolded for v2.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--color-text-success)">What works well</div>
+        <div style="font-size:12px;line-height:1.6;color:var(--color-text-secondary)">
+          • Onboarding guard is truly fail-closed (blocks during loading — no content flash)<br>
+          • Assigned tasks are ALWAYS visible even if the space is restricted<br>
+          • 3-tier privilege resolution (role → department → explicit grant) is clean and extensible<br>
+          • Role assignment hierarchy prevents privilege escalation<br>
+          • DB helper functions are SECURITY DEFINER + STABLE — safe against RLS recursion and efficient<br>
+          • Workspace creator correctly gets 'owner' role (fixed via migration in v1)
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /group-ops -->
 
 </div><!-- /container -->
 
 <script>
+/* ── Role data ── */
 const roles = [
-  { id:"owner", cls:"tier-owner", dot:"#BA7517", name:"Owner", tier:"Tier 1 — superadmin",
-    desc:"Workspace creator. Inherits all admin permissions automatically. Cannot be removed by anyone else.",
-    notes:"Created when a new workspace is set up. Has all permissions including manage_privileges. The workspace's 'owner' field points to this user.",
+  { id:"owner", dot:"#BA7517", name:"Owner", tier:"Tier 1 — superadmin",
+    desc:"Workspace creator. All permissions. Cannot be removed by anyone else.",
+    notes:"Created by handle_new_workspace() trigger. Has all 25 permissions including manage_privileges.",
     perms:{ task:["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment"], token:["view_all_tokens","view_own_tokens","create_token","update_token","delete_token"], hr:["manage_jds","manage_sops"], admin:["create_department","manage_departments","create_role","manage_roles","view_user_management","view_billing","update_billing_status","manage_privileges"] },
     nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (auto)","HR (auto)","Resources vault","Gantt","Notes","Settings (all tabs incl. Automations + Danger Zone)"],
     legacy:["canManageTasks✓","canChatWithClients✓","canViewAllTasks✓","canEditTasks✓"] },
-  { id:"ceo", cls:"tier-ceo", dot:"#BA7517", name:"CEO", tier:"Tier 1 — superadmin",
-    desc:"Chief Executive Officer. Identical permissions to Owner and Admin. Added in a later migration.",
-    notes:"Treated as a superset of admin in all RLS policies and frontend checks. Cannot assign CEO/Admin roles to others.",
+  { id:"ceo", dot:"#BA7517", name:"CEO", tier:"Tier 1 — superadmin",
+    desc:"Chief Executive Officer. Identical permissions to Owner and Admin.",
+    notes:"Treated as superset of admin in all RLS and frontend checks. Cannot assign CEO/Admin roles to others.",
     perms:{ task:["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment"], token:["view_all_tokens","view_own_tokens","create_token","update_token","delete_token"], hr:["manage_jds","manage_sops"], admin:["create_department","manage_departments","create_role","manage_roles","view_user_management","view_billing","update_billing_status","manage_privileges"] },
-    nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (auto)","HR (auto)","Resources vault","Gantt","Notes","Settings (note: Workspace+Automations tabs missing — see Gaps)"],
+    nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (auto)","HR (auto)","Resources vault","Gantt","Notes","Settings (profile only — Workspace+Automations tabs missing, see Gaps)"],
     legacy:["canManageTasks✓","canChatWithClients✓","canViewAllTasks✓","canEditTasks✓"] },
-  { id:"admin", cls:"tier-admin", dot:"#A32D2D", name:"Admin", tier:"Tier 1 — superadmin",
-    desc:"Full workspace management. All permissions. Can manage departments, members, settings, privileges, and workspace danger zone.",
-    notes:"Legacy 'god mode' role from the original migration. Settings page Automations and Workspace Danger Zone visible to admin+owner only.",
+  { id:"admin", dot:"#A32D2D", name:"Admin", tier:"Tier 1 — superadmin",
+    desc:"Full workspace management. All permissions. Can manage departments, members, settings, privileges, and danger zone.",
+    notes:"Legacy 'god mode' role. Settings Automations and Workspace Danger Zone visible to admin+owner only.",
     perms:{ task:["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment"], token:["view_all_tokens","view_own_tokens","create_token","update_token","delete_token"], hr:["manage_jds","manage_sops"], admin:["create_department","manage_departments","create_role","manage_roles","view_user_management","view_billing","update_billing_status","manage_privileges"] },
-    nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (auto)","HR (auto)","Resources vault","Gantt","Notes","Settings (all tabs incl. Automations + Danger Zone)"],
+    nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (auto)","HR (auto)","Resources vault","Gantt","Notes","Settings (all tabs)"],
     legacy:["canManageTasks✓","canChatWithClients✓","canViewAllTasks✓","canEditTasks✓"] },
-  { id:"department_head", cls:"tier-dhead", dot:"#534AB7", name:"Department Head", tier:"Tier 2 — dept-level admin",
-    desc:"Head of a department. Can manage their team, tasks, JDs, SOPs. Cannot manage workspace-level settings or privileges.",
-    notes:"In HR module, admins see all departments; dept heads only see their own. Can invite but cannot assign CEO or Admin roles.",
+  { id:"department_head", dot:"#534AB7", name:"Department Head", tier:"Tier 2 — dept-level admin",
+    desc:"Head of a department. Manages team, tasks, JDs, SOPs. Cannot manage workspace settings or privileges.",
+    notes:"In HR module, admins see all departments; dept heads see only their own. Can invite but cannot assign CEO/Admin roles.",
     perms:{ task:["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment"], token:["view_all_tokens","view_own_tokens","create_token","update_token","delete_token"], hr:["manage_jds","manage_sops"], admin:[] },
     nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (if privileged/dept)","HR (if privileged/dept)","Resources vault","Gantt","Notes","Settings (profile only)"],
     legacy:["canManageTasks✓","canChatWithClients✓","canViewAllTasks✓","canEditTasks✓"] },
-  { id:"manager", cls:"tier-mgr", dot:"#185FA5", name:"Manager", tier:"Tier 3 — team manager",
-    desc:"Manages tasks and team members. Can create/delete spaces, assign tasks, view all tasks, manage tokens. Cannot manage JDs/SOPs or workspace settings.",
-    notes:"Can invite members and approve leave. Dashboard shows Manager info card. Share Report button visible.",
+  { id:"manager", dot:"#185FA5", name:"Manager", tier:"Tier 3 — team manager",
+    desc:"Manages tasks and team. Can create/delete spaces, assign tasks, view all tasks, manage tokens. Cannot manage JDs/SOPs.",
+    notes:"Can invite and approve leave. Dashboard shows Manager info card. Share Report button visible. Client communication mode toggle in Tokens page.",
     perms:{ task:["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment"], token:["view_all_tokens","view_own_tokens","create_token","update_token","delete_token"], hr:[], admin:[] },
     nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (if privileged/dept)","HR (if privileged/dept)","Resources vault","Gantt","Notes","Settings (profile only)"],
     legacy:["canManageTasks✓","canChatWithClients✓","canViewAllTasks✓","canEditTasks✓"] },
-  { id:"staff", cls:"tier-staff", dot:"#3B6D11", name:"Staff", tier:"Tier 4 — standard employee",
-    desc:"Creates and works on tasks. Can create spaces, assign tasks, update statuses. Sees all tasks in allowed spaces. Cannot delete tasks or spaces.",
-    notes:"Goes through onboarding. Resources vault visible. Leave request page visible. Legacy finance/hr/qc roles also labeled as 'Staff' but have zero permissions.",
+  { id:"staff", dot:"#3B6D11", name:"Staff", tier:"Tier 4 — standard employee",
+    desc:"Creates and works on tasks. Can create spaces, assign tasks, update statuses. Sees all tasks in their spaces. Cannot delete tasks or spaces.",
+    notes:"Goes through onboarding. Resources vault and Leave request page visible. Legacy finance/hr/qc roles also labeled 'Staff' but have zero permissions.",
     perms:{ task:["add_task","edit_task","create_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment"], token:["view_own_tokens","create_token","update_token"], hr:[], admin:[] },
     nav:["Dashboard","Tasks","Tokens","Team","Messages","Finance (if privileged/dept)","HR (if privileged/dept)","Resources vault","Gantt","Leave request","My resources","Notes","Settings (profile only)"],
     legacy:["canManageTasks✓","canChatWithClients✗","canViewAllTasks✓","canEditTasks✓"] },
-  { id:"intern", cls:"tier-intern", dot:"#0F6E56", name:"Intern", tier:"Tier 5 — limited access",
-    desc:"View-only access to assigned tasks only. Can update status of assigned tasks and add comments. Cannot create tasks, spaces, or view unassigned tasks.",
-    notes:"'View Only' badge shown in Tasks page. Dashboard hides task analytics, heatmap, team status, token snapshot. Cannot receive Finance edit privilege.",
+  { id:"intern", dot:"#0F6E56", name:"Intern", tier:"Tier 5 — limited access",
+    desc:"View-only access to assigned tasks only. Can update status and add comments. Cannot create tasks, spaces, or view unassigned tasks.",
+    notes:"'View Only' badge shown in Tasks page. Dashboard hides analytics, heatmap, team status, token snapshot. Cannot receive Finance edit privilege.",
     perms:{ task:["view_assigned_tasks","update_task_status","add_comment"], token:[], hr:[], admin:[] },
-    nav:["Dashboard (limited widgets)","Tasks (assigned only)","Messages","Resources vault","Gantt","Leave request","My resources","Notes","Settings (profile only)"],
+    nav:["Dashboard (limited)","Tasks (assigned only)","Messages","Resources vault","Gantt","Leave request","My resources","Notes","Settings (profile only)"],
     legacy:["canManageTasks✗","canChatWithClients✗","canViewAllTasks✗","canEditTasks✗"] },
-  { id:"client", cls:"tier-client", dot:"#534AB7", name:"Client", tier:"External — portal user",
-    desc:"External client with restricted portal access. Can view assigned tasks, add comments, and manage own tokens. Cannot see internal team tasks.",
+  { id:"client", dot:"#534AB7", name:"Client", tier:"External — portal user",
+    desc:"External client. Can view assigned tasks, add comments, manage own tokens. Cannot see internal tasks.",
     notes:"Skips onboarding. Uses 'client' comment channel. Tasks page shows client-specific layout. Calendar shows only first 2 events. Dashboard shows client help card.",
     perms:{ task:["view_assigned_tasks","add_comment"], token:["view_own_tokens","create_token"], hr:[], admin:[] },
     nav:["Dashboard (limited)","Tasks (assigned only)","Tokens (own only)","Messages","Notes","Settings (profile only)"],
@@ -362,21 +601,21 @@ const allPerms = [
   {cat:"Administration",perms:["create_department","manage_departments","create_role","manage_roles","view_user_management","manage_privileges"]},
 ];
 
-const colRoles=["owner","ceo","admin","department_head","manager","staff","intern","client"];
-const colLabels={"owner":"Owner","ceo":"CEO","admin":"Admin","department_head":"Dept Head","manager":"Manager","staff":"Staff","intern":"Intern","client":"Client"};
+const colRoles = ["owner","ceo","admin","department_head","manager","staff","intern","client"];
+const colLabels = {"owner":"Owner","ceo":"CEO","admin":"Admin","department_head":"Dept Head","manager":"Manager","staff":"Staff","intern":"Intern","client":"Client"};
 
-const rolePermMap={
-  owner:new Set([...allPerms.flatMap(c=>c.perms)]),
-  ceo:new Set([...allPerms.flatMap(c=>c.perms)]),
-  admin:new Set([...allPerms.flatMap(c=>c.perms)]),
-  department_head:new Set(["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment","view_all_tokens","view_own_tokens","create_token","update_token","delete_token","manage_jds","manage_sops"]),
-  manager:new Set(["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment","view_all_tokens","view_own_tokens","create_token","update_token","delete_token"]),
-  staff:new Set(["add_task","edit_task","create_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment","view_own_tokens","create_token","update_token"]),
-  intern:new Set(["view_assigned_tasks","update_task_status","add_comment"]),
-  client:new Set(["view_assigned_tasks","add_comment","view_own_tokens","create_token"]),
+const rolePermMap = {
+  owner: new Set([...allPerms.flatMap(c=>c.perms)]),
+  ceo: new Set([...allPerms.flatMap(c=>c.perms)]),
+  admin: new Set([...allPerms.flatMap(c=>c.perms)]),
+  department_head: new Set(["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment","view_all_tokens","view_own_tokens","create_token","update_token","delete_token","manage_jds","manage_sops"]),
+  manager: new Set(["add_task","edit_task","delete_task","create_space","delete_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment","view_all_tokens","view_own_tokens","create_token","update_token","delete_token"]),
+  staff: new Set(["add_task","edit_task","create_space","assign_task","update_task_status","view_all_tasks","view_assigned_tasks","add_comment","view_own_tokens","create_token","update_token"]),
+  intern: new Set(["view_assigned_tasks","update_task_status","add_comment"]),
+  client: new Set(["view_assigned_tasks","add_comment","view_own_tokens","create_token"]),
 };
 
-const navItems=[
+const navItems = [
   {label:"Dashboard",roles:["owner","ceo","admin","department_head","manager","staff","intern","client"]},
   {label:"Tasks",roles:["owner","ceo","admin","department_head","manager","staff","intern","client"],note:"Clients see limited layout; Interns see assigned only"},
   {label:"Tokens",roles:["owner","ceo","admin","department_head","manager","staff","client"],note:"Clients see own only"},
@@ -389,12 +628,12 @@ const navItems=[
   {label:"Leave request",roles:["staff","intern"]},
   {label:"My resources",roles:["staff","intern"]},
   {label:"Notes",roles:["owner","ceo","admin","department_head","manager","staff","intern","client"]},
-  {label:"Settings",roles:["owner","ceo","admin","department_head","manager","staff","intern","client"],note:"Workspace/Automations: admin+owner only"},
+  {label:"Settings",roles:["owner","ceo","admin","department_head","manager","staff","intern","client"],note:"Workspace+Automations: admin+owner only"},
 ];
 
-const rlsPolicies=[
+const rlsPolicies = [
   {table:"profiles",op:"SELECT",check:"All authenticated users"},
-  {table:"profiles",op:"UPDATE",check:"Own profile only (auth.uid() = user_id)"},
+  {table:"profiles",op:"UPDATE",check:"Own profile only"},
   {table:"user_roles",op:"SELECT",check:"Own role, or admin sees all"},
   {table:"user_roles",op:"INSERT/UPDATE/DELETE",check:"Admin only"},
   {table:"departments",op:"SELECT",check:"All workspace members"},
@@ -404,19 +643,19 @@ const rlsPolicies=[
   {table:"spaces",op:"INSERT/UPDATE",check:"can_manage_tasks() — staff and above"},
   {table:"spaces",op:"DELETE",check:"is_workspace_admin_or_manager()"},
   {table:"tasks",op:"SELECT",check:"is_workspace_admin_or_manager() OR is_task_assignee() OR shares_department()"},
-  {table:"tasks",op:"INSERT",check:"can_manage_tasks() — staff and above"},
+  {table:"tasks",op:"INSERT",check:"can_manage_tasks()"},
   {table:"tasks",op:"UPDATE",check:"can_manage_tasks() OR is_task_assignee()"},
   {table:"tasks",op:"DELETE",check:"is_workspace_admin_or_manager()"},
   {table:"task_comments",op:"INSERT",check:"Admin/manager/staff/intern OR client if assigned"},
   {table:"task_comments",op:"UPDATE/DELETE",check:"Own comments only"},
   {table:"workspace_invitations",op:"SELECT/INSERT/DELETE",check:"is_workspace_admin_or_manager()"},
   {table:"workspace_members",op:"UPDATE",check:"is_workspace_admin()"},
-  {table:"billing_records",op:"ALL",check:"Workspace member (privilege filtering app-layer only)"},
+  {table:"billing_records",op:"ALL",check:"Workspace member (privilege check is app-layer only)"},
 ];
 
-function buildRoleCards(){
-  const grid=document.getElementById('role-grid');
-  grid.innerHTML=roles.map(r=>`
+/* ── Build role cards ── */
+function buildRoleCards() {
+  document.getElementById('role-grid').innerHTML = roles.map(r => `
     <div class="role-card" id="card-${r.id}" onclick="toggleDetail('${r.id}')">
       <div class="role-header">
         <div class="role-dot" style="background:${r.dot}"></div>
@@ -426,79 +665,93 @@ function buildRoleCards(){
     </div>`).join('');
 }
 
-function toggleDetail(id){
-  const role=roles.find(r=>r.id===id);
-  const panel=document.getElementById('detail-panel');
-  const title=document.getElementById('detail-title');
-  const body=document.getElementById('detail-body');
-  const card=document.getElementById('card-'+id);
-  const wasActive=card.classList.contains('active');
-  document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('active'));
-  if(wasActive){panel.classList.remove('show');return;}
+function toggleDetail(id) {
+  const role = roles.find(r => r.id === id);
+  const panel = document.getElementById('detail-panel');
+  const card = document.getElementById('card-' + id);
+  const wasActive = card.classList.contains('active');
+  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
+  if (wasActive) { panel.classList.remove('show'); return; }
   card.classList.add('active');
-  title.textContent=role.name+' — full permissions detail';
-  const allP=[...role.perms.task,...role.perms.token,...role.perms.hr,...role.perms.admin];
-  body.innerHTML=`
+  document.getElementById('detail-title').textContent = role.name + ' — full permissions detail';
+  const allP = [...role.perms.task, ...role.perms.token, ...role.perms.hr, ...role.perms.admin];
+  document.getElementById('detail-body').innerHTML = `
     <div class="kv"><span class="kv-key">Notes</span><span class="kv-val">${role.notes}</span></div>
     <div style="height:12px"></div>
     <div style="font-weight:500;font-size:13px;margin-bottom:8px">Permissions (${allP.length} total)</div>
-    <div class="perm-grid">${allP.map(p=>`<div class="perm-item"><span class="perm-icon check">✓</span><span>${p}</span></div>`).join('')}</div>
+    <div class="perm-grid">${allP.map(p => `<div class="perm-item"><span class="check">✓</span><span>${p}</span></div>`).join('')}</div>
     <div style="height:12px"></div>
     <div style="font-weight:500;font-size:13px;margin-bottom:8px">Navigation access</div>
-    <div>${role.nav.map(n=>`<span class="badge b-yes">${n}</span>`).join('')}</div>
+    <div>${role.nav.map(n => `<span class="badge b-yes">${n}</span>`).join('')}</div>
     <div style="height:12px"></div>
-    <div style="font-weight:500;font-size:13px;margin-bottom:8px">Legacy permission flags</div>
-    <div>${role.legacy.map(l=>{const ok=l.includes('✓');return`<span class="badge ${ok?'b-yes':'b-no'}">${l.replace('✓','').replace('✗','')} ${ok?'✓':'✗'}</span>`}).join('')}</div>
+    <div style="font-weight:500;font-size:13px;margin-bottom:8px">Legacy flags</div>
+    <div>${role.legacy.map(l => { const ok = l.includes('✓'); return `<span class="badge ${ok?'b-yes':'b-no'}">${l.replace('✓','').replace('✗','')} ${ok?'✓':'✗'}</span>`; }).join('')}</div>
   `;
   panel.classList.add('show');
-  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
-function buildMatrix(){
-  let h=`<table><thead><tr><th>Permission</th>${colRoles.map(r=>`<th class="tc">${colLabels[r]}</th>`).join('')}</tr></thead><tbody>`;
-  allPerms.forEach(cat=>{
-    h+=`<tr><td colspan="${colRoles.length+1}" style="font-weight:500;font-size:11px;color:var(--color-text-secondary);padding:10px 10px 4px;background:var(--color-background-secondary)">${cat.cat}</td></tr>`;
-    cat.perms.forEach(p=>{
-      h+=`<tr><td class="row-label">${p}</td>`;
-      colRoles.forEach(r=>{
-        const has=rolePermMap[r]?.has(p);
-        h+=`<td class="tc" style="color:${has?'var(--color-text-success)':'var(--color-text-secondary)'}">${has?'✓':'·'}</td>`;
+/* ── Build permission matrix ── */
+function buildMatrix() {
+  let h = `<table><thead><tr><th>Permission</th>${colRoles.map(r=>`<th class="tc">${colLabels[r]}</th>`).join('')}</tr></thead><tbody>`;
+  allPerms.forEach(cat => {
+    h += `<tr class="cat-row"><td colspan="${colRoles.length+1}">${cat.cat}</td></tr>`;
+    cat.perms.forEach(p => {
+      h += `<tr><td class="row-label">${p}</td>`;
+      colRoles.forEach(r => {
+        const has = rolePermMap[r]?.has(p);
+        h += `<td class="tc" style="color:${has?'var(--color-text-success)':'var(--color-text-secondary)'}">${has?'✓':'·'}</td>`;
       });
-      h+='</tr>';
+      h += '</tr>';
     });
   });
-  h+='</tbody></table>';
-  document.getElementById('matrix-table').innerHTML=h;
+  h += '</tbody></table>';
+  document.getElementById('matrix-table').innerHTML = h;
 }
 
-function buildNavTable(){
-  let h=`<table><thead><tr><th>Page</th>${colRoles.map(r=>`<th class="tc">${colLabels[r]}</th>`).join('')}<th>Notes</th></tr></thead><tbody>`;
-  navItems.forEach(item=>{
-    h+=`<tr><td class="row-label">${item.label}</td>`;
-    colRoles.forEach(r=>{
-      const has=item.roles.includes(r);
-      h+=`<td class="tc" style="color:${has?'var(--color-text-success)':'var(--color-text-secondary)'}">${has?'✓':'·'}</td>`;
+/* ── Build nav table ── */
+function buildNavTable() {
+  let h = `<table><thead><tr><th>Page</th>${colRoles.map(r=>`<th class="tc">${colLabels[r]}</th>`).join('')}<th>Notes</th></tr></thead><tbody>`;
+  navItems.forEach(item => {
+    h += `<tr><td class="row-label">${item.label}</td>`;
+    colRoles.forEach(r => {
+      const has = item.roles.includes(r);
+      h += `<td class="tc" style="color:${has?'var(--color-text-success)':'var(--color-text-secondary)'}">${has?'✓':'·'}</td>`;
     });
-    h+=`<td style="font-size:11px;color:var(--color-text-secondary)">${item.note||''}</td></tr>`;
+    h += `<td style="font-size:11px;color:var(--color-text-secondary)">${item.note||''}</td></tr>`;
   });
-  h+='</tbody></table>';
-  document.getElementById('nav-table').innerHTML=h;
+  h += '</tbody></table>';
+  document.getElementById('nav-table').innerHTML = h;
 }
 
-function buildRLSTable(){
-  let h=`<table><thead><tr><th>Table</th><th>Operation</th><th>Policy check</th></tr></thead><tbody>`;
-  rlsPolicies.forEach(p=>{
-    h+=`<tr><td class="row-label">${p.table}</td><td><span class="badge b-cond">${p.op}</span></td><td style="font-size:12px">${p.check}</td></tr>`;
+/* ── Build RLS table ── */
+function buildRLSTable() {
+  let h = `<table><thead><tr><th>Table</th><th>Operation</th><th>Policy check</th></tr></thead><tbody>`;
+  rlsPolicies.forEach(p => {
+    h += `<tr><td class="row-label">${p.table}</td><td><span class="badge b-cond">${p.op}</span></td><td style="font-size:12px">${p.check}</td></tr>`;
   });
-  h+='</tbody></table>';
-  document.getElementById('rls-table').innerHTML=h;
+  h += '</tbody></table>';
+  document.getElementById('rls-table').innerHTML = h;
 }
 
-function showTab(id){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('show'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('show');
+/* ── Tab switching (per group) ── */
+function showTab(id, group) {
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(t => t.classList.remove('show'));
+  document.querySelectorAll(`#tabs-${group} .tab-btn`).forEach(b => b.classList.remove('active'));
+  document.getElementById(`tab-${id}`).classList.add('show');
   event.target.classList.add('active');
+}
+
+/* ── Section group switching ── */
+function showGroup(key, el) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.section-group').forEach(g => {
+    const groups = g.dataset.groups.split(',');
+    g.classList.toggle('show', groups.includes(key));
+  });
+  document.getElementById('divider-access').style.display = (key === 'all' || (key !== 'roles' && key !== 'ops')) ? '' : 'none';
+  document.getElementById('divider-ops').style.display = (key === 'all' || key === 'ops') ? '' : 'none';
 }
 
 buildRoleCards();
